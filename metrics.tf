@@ -6,11 +6,10 @@ resource "azurerm_monitor_diagnostic_setting" "standard" {
 
   count = local.enable_standard_metrics ? 1 : 0
 
-  dynamic "log" {
+  dynamic "enabled_log" {
     for_each = toset(local.logs)
     content {
-      category = log.key
-      enabled  = true
+      category = enabled_log.key
 
       retention_policy {
         enabled = local.enable_retention
@@ -18,20 +17,6 @@ resource "azurerm_monitor_diagnostic_setting" "standard" {
       }
     }
   }
-
-  dynamic "log" {
-    for_each = toset(var.disabled_logs)
-    content {
-      category = log.key
-      enabled  = false
-
-      retention_policy {
-        enabled = false
-        days    = 0
-      }
-    }
-  }
-
 
   dynamic "metric" {
     for_each = toset(local.metrics)
@@ -56,24 +41,10 @@ resource "azurerm_monitor_diagnostic_setting" "monitoring" {
 
   count = local.enable_monitoring_metrics ? 1 : 0
 
-  dynamic "log" {
-    for_each = toset(var.disabled_logs)
-    content {
-      category = log.key
-      enabled  = false
-
-      retention_policy {
-        enabled = false
-        days    = 0
-      }
-    }
-  }
-
-  dynamic "log" {
+  dynamic "enabled_log" {
     for_each = toset(local.logs)
     content {
-      category = log.key
-      enabled  = true
+      category = enabled_log.key
 
       retention_policy {
         enabled = local.enable_retention

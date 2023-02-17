@@ -85,26 +85,6 @@ variable "user_assigned_identity_ids" {
   default     = null
 }
 
-variable "disabled_logs" {
-  description = "Disabled logs. Some datafactory logs are defined with 'enabled = false' by design ; this values specify then to stabilize terraform plan."
-  type        = list(string)
-  default = [
-    "AirflowDagProcessingLogs",
-    "AirflowSchedulerLogs",
-    "AirflowTaskLogs",
-    "AirflowWebLogs",
-    "AirflowWorkerLogs",
-    "SSISIntegrationRuntimeLogs",
-    "SSISPackageEventMessageContext",
-    "SSISPackageEventMessages",
-    "SSISPackageExecutableStatistics",
-    "SSISPackageExecutionComponentPhases",
-    "SSISPackageExecutionDataStatistics",
-    "SandboxActivityRuns",
-    "SandboxPipelineRuns"
-  ]
-}
-
 variable "managed_virtual_network_enabled" {
   type    = bool
   default = false
