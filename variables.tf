@@ -49,12 +49,6 @@ variable "monitoring_workspace_id" {
   description = "If defined, the log analytics workspace id for monitoring logs."
 }
 
-variable "metrics_retention_days" {
-  type        = number
-  default     = 30
-  description = "Metrics retention days."
-}
-
 variable "caf_prefixes" {
   type        = list(string)
   default     = []

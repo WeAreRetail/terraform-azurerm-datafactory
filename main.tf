@@ -2,8 +2,6 @@ locals {
   specific_tags = {
     "description" = var.description
   }
-  metrics_retention_days = var.metrics_retention_days
-  enable_retention       = local.metrics_retention_days != null && local.metrics_retention_days > 0
 
   enable_standard_metrics   = var.enable_standard_analytics
   enable_monitoring_metrics = var.monitoring_workspace_id != null

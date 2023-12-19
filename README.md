@@ -47,7 +47,6 @@ module "aware_datafactory" {
 | <a name="input_enable_standard_analytics"></a> [enable\_standard\_analytics](#input\_enable\_standard\_analytics) | Indicates if the log are sent to a specified log analytics workspace. | `bool` | `false` | no |
 | <a name="input_identity_type"></a> [identity\_type](#input\_identity\_type) | Add an Identity (MSI) to the function app. Possible values are SystemAssigned or UserAssigned | `string` | `"SystemAssigned"` | no |
 | <a name="input_managed_virtual_network_enabled"></a> [managed\_virtual\_network\_enabled](#input\_managed\_virtual\_network\_enabled) | n/a | `bool` | `false` | no |
-| <a name="input_metrics_retention_days"></a> [metrics\_retention\_days](#input\_metrics\_retention\_days) | Metrics retention days. | `number` | `30` | no |
 | <a name="input_monitoring_workspace_id"></a> [monitoring\_workspace\_id](#input\_monitoring\_workspace\_id) | If defined, the log analytics workspace id for monitoring logs. | `string` | `null` | no |
 | <a name="input_name_separator"></a> [name\_separator](#input\_name\_separator) | Name separator | `string` | `"-"` | no |
 | <a name="input_standard_analytics_workspace_id"></a> [standard\_analytics\_workspace\_id](#input\_standard\_analytics\_workspace\_id) | If defined, the log analytics workspace id for standard logs. Mandatory if enable\_standard\_analytics is set to 'true' | `string` | `null` | no |

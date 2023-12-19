@@ -10,11 +10,6 @@ resource "azurerm_monitor_diagnostic_setting" "standard" {
     for_each = toset(local.logs)
     content {
       category = enabled_log.key
-
-      retention_policy {
-        enabled = local.enable_retention
-        days    = local.metrics_retention_days
-      }
     }
   }
 
@@ -23,11 +18,6 @@ resource "azurerm_monitor_diagnostic_setting" "standard" {
     content {
       category = metric.key
       enabled  = true
-
-      retention_policy {
-        enabled = local.enable_retention
-        days    = local.metrics_retention_days
-      }
     }
   }
 }
