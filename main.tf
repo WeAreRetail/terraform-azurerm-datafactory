@@ -8,6 +8,7 @@ locals {
 
   logs    = ["PipelineRuns", "TriggerRuns", "ActivityRuns"]
   metrics = ["AllMetrics"]
+  global_adf_metrics = []
 
   location      = coalesce(var.custom_location, data.azurerm_resource_group.parent_group.location)
   parent_tags   = { for n, v in data.azurerm_resource_group.parent_group.tags : n => v if n != "description" }

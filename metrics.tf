@@ -37,4 +37,11 @@ resource "azurerm_monitor_diagnostic_setting" "monitoring" {
       category = enabled_log.key
     }
   }
+  dynamic "metric" {
+    for_each = toset(local.metrics)
+    content {
+      category = metric.key
+      enabled = false
+    }
+  }
 }
