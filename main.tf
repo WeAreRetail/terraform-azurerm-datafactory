@@ -8,7 +8,6 @@ locals {
 
   logs    = ["PipelineRuns", "TriggerRuns", "ActivityRuns"]
   metrics = ["AllMetrics"]
-  global_adf_metrics = []
 
   location      = coalesce(var.custom_location, data.azurerm_resource_group.parent_group.location)
   parent_tags   = { for n, v in data.azurerm_resource_group.parent_group.tags : n => v if n != "description" }
@@ -45,6 +44,15 @@ resource "azurerm_data_factory" "factory" {
     content {
       type         = var.identity_type
       identity_ids = local.user_assigned_identity_enabeld ? var.user_assigned_identity_ids : null
+    }
+  }
+
+  dynamic "global_parameter" {
+    for_each = var.global_parameters
+    content {
+      name  = global_parameter.value.name
+      type  = global_parameter.value.type
+      value = global_parameter.value.value
     }
   }
 
