@@ -13,11 +13,10 @@ resource "azurerm_monitor_diagnostic_setting" "standard" {
     }
   }
 
-  dynamic "metric" {
+  dynamic "enabled_metric" {
     for_each = toset(local.metrics)
     content {
-      category = metric.key
-      enabled  = true
+      category = enabled_metric.key
     }
   }
 }
@@ -37,11 +36,10 @@ resource "azurerm_monitor_diagnostic_setting" "monitoring" {
       category = enabled_log.key
     }
   }
-  dynamic "metric" {
+  dynamic "enabled_metric" {
     for_each = toset(local.metrics)
     content {
-      category = metric.key
-      enabled  = false
+      category = enabled_metric.key
     }
   }
 }
